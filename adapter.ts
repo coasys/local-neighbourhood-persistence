@@ -11,7 +11,7 @@ class SharedPerspectivePutAdapter implements PublicSharing {
   constructor(context: LanguageContext) {
     this.#agent = context.agent;
     this.#IPFS = context.IPFS;
-    if ("storagePath" in context.customSettings) { this.#storagePath = context.customSettings["storagePath"] } else { this.#storagePath = "./src/tst-tmp/" };
+    if ("storagePath" in context.customSettings) { this.#storagePath = context.customSettings["storagePath"] } else { this.#storagePath = "./tst-tmp/" };
   }
 
   async createPublic(neighbourhood: object): Promise<Address> {
@@ -36,7 +36,7 @@ export default class Adapter implements ExpressionAdapter {
 
   constructor(context: LanguageContext) {
     this.putAdapter = new SharedPerspectivePutAdapter(context);
-    if ("storagePath" in context.customSettings) { this.#storagePath = context.customSettings["storagePath"] } else { this.#storagePath = "./src/tst-tmp/" };
+    if ("storagePath" in context.customSettings) { this.#storagePath = context.customSettings["storagePath"] } else { this.#storagePath = "./tst-tmp/" };
   }
 
   async get(address: Address): Promise<Expression> {
