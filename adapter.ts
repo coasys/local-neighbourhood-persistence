@@ -39,11 +39,12 @@ export default class Adapter implements ExpressionAdapter {
 
   async get(address: Address): Promise<Expression> {
     const neighbourhoodPath = join(this.#storagePath, `neighbourhood-${address}.json`)
-    if (await exists(neighbourhoodPath)) {
+    try {
+      await exists(neighbourhoodPath)
       const neighbourhood = JSON.parse(Deno.readTextFileSync(neighbourhoodPath).toString());
       console.log("Found neighbourhood: ", neighbourhood);
       return neighbourhood
-    } else {
+    } catch {
       return null
     } 
   }
